@@ -47,15 +47,19 @@ namespace ScpsInfoDisplay
                             }
                         }
 
-                        // Display Custom Roles, but only the ones defined in CustomRolesIntegrations
-                        foreach (CustomRole customRole in CustomRole.Registered)
+                        // Custom Roles
+                        if (!ScpsInfoDisplay.Instance.Config.HideCustomRolesFromDisplay)
                         {
-                            if (ScpsInfoDisplay.Instance.Config.CustomRolesIntegrations.ContainsKey(customRole.Name))
+                            foreach (CustomRole customRole in CustomRole.Registered)
                             {
-                                foreach (Player customPlayer in customRole.TrackedPlayers)
+                                if (ScpsInfoDisplay.Instance.Config.CustomRolesIntegrations.ContainsKey(customRole.Name))
                                 {
-                                    builder.Append((customPlayer == player ? ScpsInfoDisplay.Instance.Config.PlayersMarker : string.Empty)
-                                                   + ProcessCustomRoleVariables(customRole, customPlayer)).Append('\n');
+                                    foreach (Player customPlayer in customRole.TrackedPlayers)
+                                    {
+                                        bool isViewerThisCustomRoleInstance = customPlayer == player;
+                                        builder.Append((isViewerThisCustomRoleInstance ? ScpsInfoDisplay.Instance.Config.PlayersMarker : string.Empty)
+                                                       + ProcessCustomRoleVariables(customRole, customPlayer)).Append('\n');
+                                    }
                                 }
                             }
                         }

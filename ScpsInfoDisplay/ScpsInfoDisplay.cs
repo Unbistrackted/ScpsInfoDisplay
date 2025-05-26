@@ -9,7 +9,7 @@ namespace ScpsInfoDisplay
         public override string Prefix => "scpsinfodisplay";
         public override string Name => "ScpsInfoDisplay";
         public override string Author => "Bladuk and Vicious Vikki";
-        public override Version Version { get; } = new Version(2, 3, 0);
+        public override Version Version { get; } = new Version(2, 3, 1);
         public override Version RequiredExiledVersion { get; } = new Version(9, 6, 0);
         public static ScpsInfoDisplay Instance;
         public EventHandlers EventHandlers;

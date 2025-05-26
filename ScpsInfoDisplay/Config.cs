@@ -33,6 +33,8 @@ namespace ScpsInfoDisplay
             { "Serpents Hand Enchanter", "<color=#ff00ff><size=30>Serpents Hand Enchanter</color>[<color=#19FF40>%health%</color>]</size>"},
             { "Serpents Hand Agent", "<color=#ff00ff><size=30>Serpents Hand Agent</color>[<color=#19FF40>%health%</color>]</size>"}
         };
+        [Description("If enabled, custom roles (like Serpents Hand) won't be shown in the display, but players with custom roles can still see SCPs")]
+        public bool HideCustomRolesFromDisplay { get; set; } = false;
         [Description("Display string alignment. Possible values: Left, Center, Right.")]
         public TextAlignment TextAlignment { get; set; } = TextAlignment.Right;
         [Description("Display text position offset.")]
