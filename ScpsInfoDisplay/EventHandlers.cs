@@ -66,9 +66,17 @@ namespace ScpsInfoDisplay
                                 }
                             }
                         }
-                        builder.Append($"<voffset={ScpsInfoDisplay.Instance.Config.TextPositionOffset}em> </voffset></align>");
+                        builder.Append($"<voffset={ScpsInfoDisplay.Instance.Config.TextPositionOffset}em> ");
+                        builder.CloseVOffset();
+                        builder.CloseAlign();
                         var display = RueDisplay.Get(player);
-                        display.Show(new BasicElement(ScpsInfoDisplay.Instance.Config.TextVerticalPosition, StringBuilderPool.Pool.ToStringReturn(builder)), 2.5f);
+
+                        var hint = new BasicElement(ScpsInfoDisplay.Instance.Config.TextVerticalPosition, StringBuilderPool.Pool.ToStringReturn(builder))
+                        {
+                            ResolutionBasedAlign = true
+                        };
+
+                        display.Show(hint, 1f);
                     }
                 }
                 catch (Exception ex)
