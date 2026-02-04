@@ -3,7 +3,10 @@ using Exiled.API.Features.Roles;
 using Exiled.CustomRoles.API.Features;
 using MEC;
 using NorthwoodLib.Pools;
+using RueI.API.Elements;
 using PlayerRoles;
+using RueI.API;
+using RueI.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +38,7 @@ namespace ScpsInfoDisplay
                     foreach (Player player in Player.List.Where(p => p != null && ShouldDisplayForPlayer(p)))
                     {
                         StringBuilder builder = StringBuilderPool.Pool.Get();
-                        builder.Append($"<align={ScpsInfoDisplay.Instance.Config.TextAlignment.ToString().ToLower()}>");
+                        builder.SetAlignment(ScpsInfoDisplay.Instance.Config.TextAlignment);
                         
                         // Display SCPs
                         foreach (Player scp in Player.List.Where(p => p?.Role.Team == Team.SCPs && ShouldDisplayForPlayer(p)))
@@ -64,7 +67,8 @@ namespace ScpsInfoDisplay
                             }
                         }
                         builder.Append($"<voffset={ScpsInfoDisplay.Instance.Config.TextPositionOffset}em> </voffset></align>");
-                        player.ShowHint(StringBuilderPool.Pool.ToStringReturn(builder), 1.25f);
+                        var display = RueDisplay.Get(player);
+                        display.Show(new BasicElement(ScpsInfoDisplay.Instance.Config.TextVerticalPosition, StringBuilderPool.Pool.ToStringReturn(builder)), 2.5f);
                     }
                 }
                 catch (Exception ex)

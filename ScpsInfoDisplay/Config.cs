@@ -1,6 +1,6 @@
 ﻿using Exiled.API.Interfaces;
 using PlayerRoles;
-using ScpsInfoDisplay.Enums;
+using RueI.Utils.Enums;
 using System.Collections.Generic;
 using System.ComponentModel;
 using PlayerRoles.PlayableScps.Scp096;
@@ -35,8 +35,10 @@ namespace ScpsInfoDisplay
         };
         [Description("If enabled, custom roles (like Serpents Hand) won't be shown in the display, but players with custom roles can still see SCPs")]
         public bool HideCustomRolesFromDisplay { get; set; } = false;
-        [Description("Display string alignment. Possible values: Left, Center, Right.")]
-        public TextAlignment TextAlignment { get; set; } = TextAlignment.Right;
+        [Description("Changes the text vertical postion.")]
+        public int TextVerticalPosition { get; set; } = 500;
+        [Description("Display string alignment. Possible values: Left, Center, Right, Justified, Flush.")]
+        public AlignStyle TextAlignment { get; set; } = AlignStyle.Right;
         [Description("Display text position offset.")]
         public sbyte TextPositionOffset { get; set; } = 30;
         [Description("The player seeing the list will be highlighted with the special marker to the left. Leave it empty if disabled.")]
